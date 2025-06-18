@@ -181,32 +181,8 @@ const Home = () => {
       >
         <MemeGallery />
       </motion.section>
-
-      <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.6 }}
-        className="text-center py-16 bg-gradient-to-r from-cyber-pink/10 via-cyber-purple/10 to-cyber-blue/10 rounded-lg border border-cyber-pink/30"
-      >
-        <h2 className="text-3xl font-cyber font-bold text-gradient mb-4">
-          Ready to Enter the Matrix?
-        </h2>
-        <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
-          Join the digital revolution where memes are currency and creativity
-          rules the underground
-        </p>
-        <div className="space-x-4">
-          <Link to="/create">
-            <Button variant="primary" size="lg">
-              Start Creating
-            </Button>
-          </Link>
-          <Button variant="outline" size="lg">
-            Learn More
-          </Button>
-        </div>
-      </motion.section>
     </div>
   );
 };
+
 export default Home;

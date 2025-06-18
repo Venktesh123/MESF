@@ -1,0 +1,45 @@
+export const MEME_TAGS = [
+  "crypto",
+  "stonks",
+  "doge",
+  "funny",
+  "relatable",
+  "programming",
+  "gaming",
+  "anime",
+  "politics",
+  "sports",
+  "music",
+  "movies",
+  "food",
+  "travel",
+  "wholesome",
+  "dark",
+  "trending",
+  "vintage",
+  "cyberpunk",
+  "ai",
+];
+
+export const PLACEHOLDER_IMAGES = [
+  "https://picsum.photos/400/400?random=1",
+  "https://picsum.photos/400/400?random=2",
+  "https://picsum.photos/400/400?random=3",
+  "https://picsum.photos/400/400?random=4",
+  "https://picsum.photos/400/400?random=5",
+  "https://picsum.photos/400/400?random=6",
+  "https://picsum.photos/400/400?random=7",
+  "https://picsum.photos/400/400?random=8",
+];
+
+export const CYBERPUNK_COLORS = {
+  pink: "#ff0080",
+  blue: "#00d4ff",
+  purple: "#8b5cf6",
+  green: "#00ff88",
+  neonPink: "#ff00ff",
+  neonBlue: "#0080ff",
+  darkBg: "#0a0a0a",
+  darkCard: "#1a1a1a",
+  darkBorder: "#333333",
+};

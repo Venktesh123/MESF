@@ -83,40 +83,6 @@ const CreateMeme = () => {
       >
         <MemeForm onSuccess={handleMemeCreated} />
       </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        className="bg-gradient-to-r from-cyber-pink/10 via-cyber-purple/10 to-cyber-green/10 border border-cyber-pink/30 rounded-lg p-6"
-      >
-        <h3 className="text-lg font-semibold text-cyber-pink mb-4">
-          🎯 Pro Tips for Maximum Chaos
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-          <div className="text-center">
-            <div className="text-2xl mb-2">🤖</div>
-            <p className="text-gray-300 font-medium mb-1">AI-Powered</p>
-            <p className="text-gray-400">
-              Use AI captions to amplify your meme's viral potential
-            </p>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl mb-2">🔥</div>
-            <p className="text-gray-300 font-medium mb-1">Trending Tags</p>
-            <p className="text-gray-400">
-              Include popular tags like crypto, stonks, or doge
-            </p>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl mb-2">⚡</div>
-            <p className="text-gray-300 font-medium mb-1">Speed Deploy</p>
-            <p className="text-gray-400">
-              Ship fast, iterate faster - this is a hackathon!
-            </p>
-          </div>
-        </div>
-      </motion.div>
     </div>
   );
 };

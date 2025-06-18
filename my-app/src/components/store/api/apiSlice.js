@@ -1,93 +1,113 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: process.env.NODE_ENV === 'production' 
-    ? 'https://your-backend-url.herokuapp.com/api' 
-    : '/api',
+  baseUrl:
+    process.env.NODE_ENV === "production"
+      ? "https://your-backend-url.herokuapp.com/api"
+      : "/api",
   prepareHeaders: (headers) => {
-    headers.set('Content-Type', 'application/json');
-    headers.set('x-user-id', 'cyberpunk420');
+    headers.set("Content-Type", "application/json");
+    headers.set("x-user-id", "cyberpunk420");
     return headers;
   },
 });
 
 export const apiSlice = createApi({
-  reducerPath: 'api',
+  reducerPath: "api",
   baseQuery,
-  tagTypes: ['Meme', 'Bid', 'Vote', 'Leaderboard'],
+  tagTypes: ["Meme", "Bid", "Vote", "Leaderboard"],
   endpoints: (builder) => ({
     getMemes: builder.query({
       query: ({ limit = 50, offset = 0, tags } = {}) => {
         const params = new URLSearchParams({
           limit: limit.toString(),
-          offset: offset.toString()
+          offset: offset.toString(),
         });
         if (tags && tags.length > 0) {
-          params.append('tags', tags.join(','));
+          params.append("tags", tags.join(","));
         }
         return `memes?${params}`;
       },
-      providesTags: ['Meme'],
+      providesTags: ["Meme"],
     }),
-    
+
     getMeme: builder.query({
       query: (id) => `memes/${id}`,
-      providesTags: (result, error, id) => [{ type: 'Meme', id }],
+      providesTags: (result, error, id) => [{ type: "Meme", id }],
     }),
-    
+
     createMeme: builder.mutation({
       query: (memeData) => ({
-        url: 'memes',
-        method: 'POST',
+        url: "memes",
+        method: "POST",
         body: memeData,
       }),
-      invalidatesTags: ['Meme', 'Leaderboard'],
+      invalidatesTags: ["Meme", "Leaderboard"],
     }),
-    
+
     generateMemeCaption: builder.mutation({
       query: (id) => ({
         url: `memes/${id}/caption`,
-        method: 'POST',
+        method: "POST",
       }),
-      invalidatesTags: (result, error, id) => [{ type: 'Meme', id }],
+      invalidatesTags: (result, error, id) => [{ type: "Meme", id }],
     }),
-    
+
     getLeaderboard: builder.query({
       query: (limit = 10) => `memes/leaderboard?limit=${limit}`,
-      providesTags: ['Leaderboard'],
+      providesTags: ["Leaderboard"],
     }),
-    
+
     placeBid: builder.mutation({
       query: (bidData) => ({
-        url: 'bids',
-        method: 'POST',
+        url: "bids",
+        method: "POST",
         body: bidData,
       }),
-      invalidatesTags: ['Bid', 'Meme'],
+      invalidatesTags: ["Bid", "Meme"],
     }),
-    
+
     getBidsForMeme: builder.query({
       query: (memeId) => `bids/meme/${memeId}`,
-      providesTags: (result, error, memeId) => [{ type: 'Bid', id: memeId }],
+      providesTags: (result, error, memeId) => [{ type: "Bid", id: memeId }],
     }),
-    
+
     getHighestBid: builder.query({
       query: (memeId) => `bids/highest/${memeId}`,
-      providesTags: (result, error, memeId) => [{ type: 'Bid', id: memeId }],
+      providesTags: (result, error, memeId) => [{ type: "Bid", id: memeId }],
     }),
-    
+
     voteMeme: builder.mutation({
       query: ({ id, type, user_id }) => ({
         url: `votes/${id}`,
-        method: 'POST',
+        method: "POST",
         body: { type, user_id },
       }),
       invalidatesTags: (result, error, { id }) => [
-        { type: 'Meme', id },
-        'Leaderboard'
+        { type: "Meme", id },
+        "Leaderboard",
       ],
     }),
-    
+
     generateCaption: builder.mutation({
       query: (tags) => ({
-        url:
+        url: "ai/caption",
+        method: "POST",
+        body: { tags },
+      }),
+    }),
+  }),
+});
+
+export const {
+  useGetMemesQuery,
+  useGetMemeQuery,
+  useCreateMemeMutation,
+  useGenerateMemeCaptionMutation,
+  useGetLeaderboardQuery,
+  usePlaceBidMutation,
+  useGetBidsForMemeQuery,
+  useGetHighestBidQuery,
+  useVoteMemeMutation,
+  useGenerateCaptionMutation,
+} = apiSlice;
