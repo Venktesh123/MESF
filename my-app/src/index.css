@@ -1,0 +1,90 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Fira+Code:wght@300;400;500&display=swap");
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Orbitron", monospace;
+    background-color: #0a0a0a;
+    color: #ffffff;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(255, 0, 255, 0.3);
+    color: #ffffff;
+  }
+
+  ::-moz-selection {
+    background: rgba(255, 0, 255, 0.3);
+    color: #ffffff;
+  }
+}
+
+@layer components {
+  .btn-cyber {
+    @apply px-6 py-3 bg-gradient-to-r from-cyber-pink to-cyber-blue text-white font-bold rounded-lg;
+    @apply hover:shadow-neon transition-all duration-300 transform hover:-translate-y-1;
+    @apply border border-transparent hover:border-cyber-pink;
+  }
+
+  .btn-cyber-outline {
+    @apply px-6 py-3 border-2 border-cyber-pink text-cyber-pink font-bold rounded-lg;
+    @apply hover:bg-cyber-pink hover:text-white transition-all duration-300;
+    @apply hover:shadow-neon;
+  }
+
+  .card-cyber {
+    @apply bg-dark-card border border-dark-border rounded-lg p-6;
+    @apply backdrop-blur-sm bg-opacity-80;
+    @apply hover:border-cyber-pink hover:shadow-neon transition-all duration-300;
+  }
+
+  .input-cyber {
+    @apply w-full px-4 py-3 bg-dark-card border border-dark-border rounded-lg;
+    @apply text-white placeholder-gray-400 focus:border-cyber-pink focus:shadow-neon;
+    @apply focus:outline-none transition-all duration-300;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-cyber-pink to-cyber-blue bg-clip-text text-transparent;
+  }
+
+  .text-neon {
+    text-shadow: 0 0 10px currentColor;
+  }
+
+  .border-neon {
+    box-shadow: 0 0 10px currentColor;
+  }
+}
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce 3s infinite;
+  }
+
+  .bg-cyber-gradient {
+    background: linear-gradient(135deg, #ff0080 0%, #8b5cf6 50%, #00d4ff 100%);
+  }
+
+  .bg-dark-gradient {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%);
+  }
+}

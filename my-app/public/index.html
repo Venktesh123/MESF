@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ff00ff" />
+    <meta
+      name="description"
+      content="MemeHustle - Cyberpunk AI Meme Marketplace where creativity meets chaos in the digital underground"
+    />
+    <meta
+      name="keywords"
+      content="memes, cyberpunk, AI, blockchain, crypto, NFT, marketplace, trading"
+    />
+
+    <meta
+      property="og:title"
+      content="MemeHustle - Cyberpunk AI Meme Marketplace"
+    />
+    <meta
+      property="og:description"
+      content="Trade, create, and vote on memes in the neon-drenched digital underground"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://memehustle.vercel.app" />
+    <meta property="og:image" content="%PUBLIC_URL%/og-image.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="MemeHustle - Cyberpunk AI Meme Marketplace"
+    />
+    <meta
+      name="twitter:description"
+      content="Trade, create, and vote on memes in the digital underground"
+    />
+    <meta name="twitter:image" content="%PUBLIC_URL%/twitter-image.png" />
+
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Fira+Code:wght@300;400;500&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>MemeHustle - Cyberpunk AI Meme Marketplace</title>
+
+    <style>
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0a0a0a;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        font-family: "Orbitron", monospace;
+      }
+
+      .loading-logo {
+        font-size: 3rem;
+        font-weight: 900;
+        background: linear-gradient(45deg, #ff0080, #00d4ff);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 2rem;
+        animation: pulse 2s infinite;
+      }
+
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 2px solid #1a1a1a;
+        border-top: 2px solid #ff00ff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      .loading-text {
+        color: #888;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <div
+        style="
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #0a0a0a;
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: Arial, sans-serif;
+          text-align: center;
+          z-index: 10000;
+        "
+      >
+        <div>
+          <h1 style="color: #ff00ff; margin-bottom: 1rem">MemeHustle</h1>
+          <p>
+            You need to enable JavaScript to run this cyberpunk meme
+            marketplace.
+          </p>
+          <p style="margin-top: 1rem; color: #888">
+            Please enable JavaScript in your browser settings.
+          </p>
+        </div>
+      </div>
+    </noscript>
+
+    <div id="loading-screen" class="loading-screen">
+      <div class="loading-logo">MEMEHUSTLE</div>
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Initializing cyberpunk matrix...</div>
+    </div>
+
+    <div id="root"></div>
+
+    <script>
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          const loadingScreen = document.getElementById("loading-screen");
+          if (loadingScreen) {
+            loadingScreen.style.opacity = "0";
+            loadingScreen.style.transition = "opacity 0.5s ease";
+            setTimeout(() => {
+              loadingScreen.style.display = "none";
+            }, 500);
+          }
+        }, 1000);
+      });
+
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("/sw.js")
+            .then((registration) => {
+              console.log("SW registered: ", registration);
+            })
+            .catch((registrationError) => {
+              console.log("SW registration failed: ", registrationError);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
